@@ -1,0 +1,21 @@
+{
+  "name": "boleto",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon ./src"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "html-pdf": "^2.2.0",
+    "html-pdf-node": "^1.0.7",
+    "moment": "^2.29.1",
+    "node-boleto": "^2.1.1",
+    "puppeteer": "^5.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
