@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const cors = require("cors");
 
-const GerarBoletoController = require("./Controllers/GerarBoleto");
+const GerarBoletoController = require("./src/Controllers/GerarBoleto");
 
 const server = express();
 server.use(express.json());
