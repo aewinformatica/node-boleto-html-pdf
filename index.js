@@ -10,10 +10,10 @@ server.use(cors());
 
 server.use(
   "/boletos",
-  express.static(path.resolve(__dirname, "./", "Boletos"))
+  express.static(path.resolve(__dirname, "./", "src", "Boletos"))
 );
 
-server.get("/gerar/boleto/:banco", GerarBoletoController.GerarBoleto);
+server.get("/gerar/boleto/:linhaDigitavel", GerarBoletoController.GerarBoleto);
 
 server.listen(process.env.PORT || 4444, () => {
   console.log("Rodando...");

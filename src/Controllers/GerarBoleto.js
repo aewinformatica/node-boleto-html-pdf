@@ -1,11 +1,11 @@
-const { gerarBoletoPDF } = require("../utils/GerarBoleto");
+const { gerarBoletoPDF } = require("../utils/GerarBoletoEJS");
 
 module.exports = {
   async GerarBoleto(req, res) {
-    const { banco } = req.params;
+    const { linhaDigitavel } = req.params;
     const host = req.headers.host;
 
-    const response = await gerarBoletoPDF(banco);
+    const response = await gerarBoletoPDF(linhaDigitavel);
 
     if (response.status) {
       res.json({
