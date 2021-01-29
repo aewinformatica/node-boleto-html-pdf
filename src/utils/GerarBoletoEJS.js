@@ -28,12 +28,7 @@ async function gerarBoletoPDF(linhaDigitavel) {
     });
 
     const browser = await puppeteer.launch({
-      args: [
-        "--no-sandbox",
-        "--dpi 72 --zoom 10 --disable-smart-shrinking",
-        "--force-device-scale-factor=3",
-        "--zoom=0.7",
-      ],
+      args: ["--no-sandbox", "--dpi 72 --zoom 1 --disable-smart-shrinking"],
     });
 
     console.log(browser);
