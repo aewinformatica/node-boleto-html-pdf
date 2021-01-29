@@ -30,9 +30,9 @@ async function gerarBoletoPDF(linhaDigitavel) {
     const browser = await puppeteer.launch({
       args: [
         "--no-sandbox",
-        "--dpi 96",
-        "--zoom 0.2",
-        " --disable-smart-shrinking",
+        "--dpi=96",
+        "--zoom=0.2",
+        "--disable-smart-shrinking",
       ],
     });
 
