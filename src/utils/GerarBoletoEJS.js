@@ -41,10 +41,6 @@ async function gerarBoletoPDF(linhaDigitavel) {
 
     const pdfConfig = {
       path: `${caminhoStorage}/teste.pdf`,
-      margin: {
-        left: "0.5cm",
-        right: "0.5cm",
-      },
       printBackground: true,
       landscape: false,
       format: "A4",
