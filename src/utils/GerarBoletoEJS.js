@@ -28,7 +28,6 @@ async function gerarBoletoPDF(linhaDigitavel) {
     });
 
     const browser = await puppeteer.launch({
-      ignoreHTTPSErrors: true,
       args: ["--no-sandbox"],
     });
 
