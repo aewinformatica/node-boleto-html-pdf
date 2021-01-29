@@ -1,4 +1,4 @@
-const { gerarBoletoPDF } = require("../utils/GerarBoletoHTML");
+const { gerarBoletoPDF } = require("../utils/GerarBoletoEJS");
 
 module.exports = {
   async GerarBoleto(req, res) {
