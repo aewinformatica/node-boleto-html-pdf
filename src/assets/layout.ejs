@@ -34,7 +34,7 @@
         font: 9px arial, helvetica, sans-serif;
       }
       .ld {
-        font: bold 15px arial;
+        font: bold 14px arial;
         color: #000000;
       }
       .ct {
@@ -46,7 +46,7 @@
         color: black;
       }
       .bc {
-        font: bold 22px arial;
+        font: bold 18px arial;
         color: #000000;
       }
 
@@ -504,12 +504,12 @@
             <td class="Ar">Corte na linha pontilhada</td>
           </tr>
           <tr>
-            <td class="cut" />
+            <td class="cut"></td>
           </tr>
         </table>
         <table class="ctN w666">
           <tr class="h13">
-            <td />
+            <td></td>
           </tr>
         </table>
 
@@ -662,7 +662,7 @@
       };
 
        const html =
-         '<div style="width: 100%; height: 550px; background: #fff "></div>';
+         '<div style="width: 100%; height: 570px; background: #fff "></div>';
        document.getElementById("html").innerHTML = html;
 
       if (boleto.linhaDigitavel) {
@@ -677,6 +677,7 @@
           novoLogo.src =  url + LOGO;
           novoLogo.width = "200";
           novoLogo.height = "20";
+
           image.src =  url + LOGO;
           image.width = "200";
           image.height = "20";
