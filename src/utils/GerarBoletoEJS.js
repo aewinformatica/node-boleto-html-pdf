@@ -1,7 +1,8 @@
 const path = require("path");
 const ejs = require("ejs");
 const template = path.resolve(__dirname, "..", "assets", "layout.ejs");
-const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer-extra");
+puppeteer.use(require("puppeteer-extra-plugin-font-size")());
 
 const BancosConfig = require("../utils/BancosConfig");
 
@@ -26,6 +27,7 @@ async function gerarBoletoPDF(linhaDigitavel) {
         html = str;
       }
     });
+    puppeteer.use;
 
     const browser = await puppeteer.launch({
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
