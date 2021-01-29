@@ -1,16 +1,22 @@
-const fs = require("fs");
 const path = require("path");
 
 const puppeteer = require("puppeteer");
 
-async function gerarBoletoPDF(Banco) {
+const BancosConfig = require("../utils/BancosConfig");
+
+async function gerarBoletoPDF(linhaDigitavel) {
   try {
     console.time("Boleto");
 
+    const codigoBanco = linhaDigitavel.substring(0, 3);
+
     const params = {
-      linhaDigitavel: "10499125107500010004200019664622684960000000001",
-      banco: Banco,
+      linhaDigitavel: linhaDigitavel,
+      BancoVerificador: BancosConfig.Bancos[codigoBanco].NUMERO_DIGITO,
+      LOGO: BancosConfig.Bancos[codigoBanco].LOGO,
+      banco: BancosConfig.Bancos[codigoBanco].NOME_BANCO,
     };
+
     const paramsString = JSON.stringify(params);
 
     const browser = await puppeteer.launch({
@@ -28,7 +34,7 @@ async function gerarBoletoPDF(Banco) {
     const caminhoStorage = path.resolve(__dirname, "..", "Boletos");
 
     const pdfConfig = {
-      path: `${caminhoStorage}/${params.banco}.pdf`,
+      path: `${caminhoStorage}/teste.pdf`,
       printBackground: true,
       landscape: false,
       format: "A4",
@@ -40,7 +46,7 @@ async function gerarBoletoPDF(Banco) {
     console.timeEnd("Boleto");
     return {
       status: true,
-      nameFile: Banco,
+      nameFile: "teste",
     };
   } catch (error) {
     console.timeEnd("Boleto");
