@@ -1,8 +1,7 @@
 const path = require("path");
 const ejs = require("ejs");
 const template = path.resolve(__dirname, "..", "assets", "layout.ejs");
-// const puppeteer = require("puppeteer");
-const puppeteer = require("@scaleleap/puppeteer");
+const puppeteer = require("puppeteer");
 
 const BancosConfig = require("../utils/BancosConfig");
 
@@ -29,11 +28,12 @@ async function gerarBoletoPDF(linhaDigitavel) {
     });
 
     const browser = await puppeteer.launch({
-      args: ["--no-sandbox", "--dpi 72 --zoom 1 --disable-smart-shrinking"],
-      extra: {
-        // is true by default, but we are just showing the example
-        stealth: true,
-      },
+      args: [
+        "--no-sandbox",
+        "--dpi 96",
+        "--zoom 0.2",
+        " --disable-smart-shrinking",
+      ],
     });
 
     console.log(browser);
@@ -50,6 +50,7 @@ async function gerarBoletoPDF(linhaDigitavel) {
       path: `${caminhoStorage}/teste.pdf`,
       printBackground: true,
       landscape: false,
+
       format: "A4",
     };
 
