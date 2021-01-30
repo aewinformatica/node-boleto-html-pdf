@@ -2,7 +2,7 @@ const path = require("path");
 const ejs = require("ejs");
 const template = path.resolve(__dirname, "..", "assets", "layout.ejs");
 const puppeteer = require("puppeteer");
-const html_to_pdf = require("html-pdf-node");
+const { chromium } = require("playwright");
 
 const BancosConfig = require("../utils/BancosConfig");
 
@@ -28,6 +28,28 @@ async function gerarBoletoPDF(linhaDigitavel) {
       }
     });
 
+    const caminhoStorage = path.resolve(__dirname, "..", "Boletos");
+
+    const browserFirefox = await chromium.launch();
+
+    const context = await browserFirefox.newContext();
+    const pageFirefox = await context.newPage();
+    await pageFirefox.setContent(html, {
+      waitUntil: "networkidle0",
+    });
+
+    const pdfConfigFirefox = {
+      path: `${caminhoStorage}/firefox.pdf`,
+      printBackground: true,
+      landscape: false,
+      format: "A4",
+    };
+
+    await pageFirefox.pdf(pdfConfigFirefox);
+    await browserFirefox.close();
+
+    //outro
+
     const browser = await puppeteer.launch({
       args: [
         "--no-sandbox",
@@ -38,23 +60,11 @@ async function gerarBoletoPDF(linhaDigitavel) {
       ],
     });
 
-    console.log(browser);
-
     const page = await browser.newPage();
 
     await page.setContent(html, {
       waitUntil: "networkidle0",
     });
-
-    const caminhoStorage = path.resolve(__dirname, "..", "Boletos");
-
-    const file = { content: html };
-
-    html_to_pdf
-      .generatePdf(file, { path: `${caminhoStorage}/teste2.pdf`, format: "A4" })
-      .then((pdfBuffer) => {
-        console.log("PDF Buffer:-", pdfBuffer);
-      });
 
     const pdfConfig = {
       path: `${caminhoStorage}/teste.pdf`,
