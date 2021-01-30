@@ -1,8 +1,8 @@
 const path = require("path");
 const ejs = require("ejs");
 const template = path.resolve(__dirname, "..", "assets", "layout.ejs");
-const puppeteer = require("puppeteer");
-const { chromium } = require("playwright");
+
+const chromium = require("chrome-aws-lambda");
 
 const BancosConfig = require("../utils/BancosConfig");
 
@@ -30,34 +30,11 @@ async function gerarBoletoPDF(linhaDigitavel) {
 
     const caminhoStorage = path.resolve(__dirname, "..", "Boletos");
 
-    const browserFirefox = await chromium.launch();
-
-    const context = await browserFirefox.newContext();
-    const pageFirefox = await context.newPage();
-    await pageFirefox.setContent(html, {
-      waitUntil: "networkidle0",
-    });
-
-    const pdfConfigFirefox = {
-      path: `${caminhoStorage}/firefox.pdf`,
-      printBackground: true,
-      landscape: false,
-      format: "A4",
-    };
-
-    await pageFirefox.pdf(pdfConfigFirefox);
-    await browserFirefox.close();
-
-    //outro
-
-    const browser = await puppeteer.launch({
-      args: [
-        "--no-sandbox",
-        "--disable-system-font-check",
-        "--disable-font-subpixel-positioning",
-        "--disable-system-font-check",
-        "--enable-font-antialiasing",
-      ],
+    const browser = await chromium.puppeteer.launch({
+      executablePath: await chromium.executablePath,
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      headless: chromium.headless,
     });
 
     const page = await browser.newPage();
