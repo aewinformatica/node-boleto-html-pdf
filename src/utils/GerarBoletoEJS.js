@@ -29,7 +29,11 @@ async function gerarBoletoPDF(linhaDigitavel) {
     });
 
     const browser = await puppeteer.launch({
-      args: ["--no-sandbox"],
+      args: [
+        "--no-sandbox",
+        "--disable-system-font-check",
+        "--disable-font-subpixel-positioning",
+      ],
     });
 
     console.log(browser);
