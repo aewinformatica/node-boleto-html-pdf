@@ -17,7 +17,6 @@ async function gerarBoletoPDF(linhaDigitavel) {
       path: `${caminhoStorage}/teste.pdf`,
       printBackground: true,
       landscape: false,
-
       format: "A4",
     };
 
