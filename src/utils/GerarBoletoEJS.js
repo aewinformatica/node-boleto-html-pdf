@@ -33,6 +33,8 @@ async function gerarBoletoPDF(linhaDigitavel) {
         "--no-sandbox",
         "--disable-system-font-check",
         "--disable-font-subpixel-positioning",
+        "--disable-system-font-check",
+        "--enable-font-antialiasing",
       ],
     });
 
