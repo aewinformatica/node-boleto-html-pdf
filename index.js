@@ -18,6 +18,11 @@ server.use(
   express.static(path.resolve(__dirname, "./", "src", "assets", "fonts"))
 );
 
+server.use(
+  "/layout",
+  express.static(path.resolve(__dirname, "./", "src", "assets"))
+);
+
 server.get("/gerar/boleto/:linhaDigitavel", GerarBoletoController.GerarBoleto);
 
 server.listen(process.env.PORT || 4444, () => {
